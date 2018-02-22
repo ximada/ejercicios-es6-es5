@@ -15,22 +15,47 @@ const inventory = [
   { name: "Ciruela", category: "fruit", stock: "8" }
 ];
 
-var totalByCategory = function(inventory, category) {
-  var filterCategory = function filterCategory(prod) {
-    var totalProd = prod.category === category;
-    return totalProd;
-  };
-  var sumInventory = function sumInventory(prodAnterior, prodActual) {
-    var base = prodAnterior + parseInt(prodActual.stock, 10);
-    return base;
-  };
-  var filtrando = inventory.filter(filterCategory).reduce(sumInventory, 0);
-  console.log(filtrando);
-  return filtrando;
-};
+// var totalByCategory = function(inventory, category) {
+//   var filterCategory = function filterCategory(prod) {
+//     var totalProd = prod.category === category;
+//     return totalProd;
+//   };
+//   var sumInventory = function sumInventory(prodAnterior, prodActual) {
+//     var base = prodAnterior + parseInt(prodActual.stock, 10);
+//     return base;
+//   };
+//   var filtrando = inventory.filter(filterCategory).reduce(sumInventory, 0);
+//   console.log(filtrando);
+//   return filtrando;
+// };
 
-totalByCategory(inventory, "beverage");
+// totalByCategory(inventory, "beverage");
 
 
 // Comenta todo el código de arriba (ecepto la const inventory) y pasa el código a ES6
+
+
+             //ES5
+
+    
+//   var filered =  inventory.filter(function(inventory, category){
+//     return category === category;
+//   }) 
+//  console.log(filered);
+
+
+const totalByCategory = (inventory, category) => {
+  const filteredProd = prod => {
+    let totalProd = prod.category === category;
+    return totalProd;
+  }
+  const result = (previousProduct, currentProduct) => {
+    let base = previousProduct + parseInt(currentProduct.stock, 10);
+    return base;
+  }
+  const filtered = inventory.filter(filteredProd).reduce(result, 0);
+  return filtered;
+}
+
+console.log(totalByCategory(inventory, "beverage"));
 
